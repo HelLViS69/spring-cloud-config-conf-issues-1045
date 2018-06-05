@@ -1,0 +1,35 @@
+server:
+  http2:
+    enabled: true
+
+spring:
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+  devtools:
+    livereload:
+      enabled: false
+
+---
+
+spring:
+  profiles: development
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "auditevents, conditions, features, refresh, scheduledtasks"
+
+---
+
+spring:
+  profiles: production
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "metrics"
+
